@@ -150,3 +150,16 @@ def authentication_password = hasProperty('authentication_password') ? authentic
 //signing {
 //    sign publishing.publications.mavenJava
 //}
+
+afterEvaluate {
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = 'pythia'
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+            }
+        }
+    }
+}

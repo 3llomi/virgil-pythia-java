@@ -75,7 +75,7 @@ group 'com.virgilsecurity'
 
 dependencies {
     // Inner dependencies
-    api (project(':pythia')) {
+    api(project(':pythia')) {
         exclude group: 'com.virgilsecurity.crypto', module: 'pythia'
 
         exclude group: 'com.virgilsecurity.sdk', module: 'sdk'
@@ -86,7 +86,8 @@ dependencies {
 
     // Virgil Crypto
     api "com.virgilsecurity.crypto:pythia-android:$versions.virgilCrypto"
-    api "com.virgilsecurity.crypto:foundation-android:$versions.virgilCrypto" // TODO remove after fixed in cryptowrapper
+    api "com.virgilsecurity.crypto:foundation-android:$versions.virgilCrypto"
+    // TODO remove after fixed in cryptowrapper
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlinVersion"
@@ -118,4 +119,16 @@ def authentication_password = hasProperty('authentication_password') ? authentic
 
 dokkaHtml {
     outputDirectory.set(file("$buildDir/javadoc"))
+}
+afterEvaluate {
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = 'pythia-android'
+                artifact javadocJar
+                artifact sourcesJar
+                from components.findByName('android')
+            }
+        }
+    }
 }
