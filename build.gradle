@@ -55,7 +55,7 @@ buildscript {
 
             // Publish
             mavenPublishPlugin: '3.6.2',
-            dokka             : '0.9.17',
+            dokka             : '1.6.21',
 
             // Tests
             testsRunner       : '1.2.0',

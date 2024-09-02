@@ -165,8 +165,6 @@ signing {
     sign publishing.publications.mavenJava
 }
 
-dokka {
-    outputFormat = 'html'
-    outputDirectory = "$buildDir/javadoc"
-    reportUndocumented = false
+dokkaHtml {
+    outputDirectory.set(file("$buildDir/javadoc"))
 }
