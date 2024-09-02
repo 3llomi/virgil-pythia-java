@@ -99,7 +99,7 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task javadocJar(type: Jar, dependsOn: 'dokka') {
+task javadocJar(type: Jar, dependsOn: 'dokkaHtml') {
     from("$buildDir/javadoc")
     classifier = 'javadoc'
 }
